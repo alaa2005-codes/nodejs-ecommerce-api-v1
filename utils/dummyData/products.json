@@ -1,0 +1,26 @@
+[
+  {
+    "title": "iPhone 17 Pro",
+    "slug": "iphone-17-pro",
+    "quantity": 20,
+    "sold": 0,
+    "price": 70,
+    "description": "iPhone 17 Pro with advanced AI camera, A19 Bionic chip, and all-day battery life",
+    "category": "507f1f77bcf86cd799439011",
+    "imageCover": "iphone15pro.jpg",
+    "ratingsAverage": 4,
+    "ratingsQuantity": 5
+  },
+  {
+    "title": "Google Pixel 9 Pro",
+    "slug": "google-pixel-9-pro",
+    "quantity": 12,
+    "sold": 0,
+    "price": 75,
+    "description": "Google Pixel 9 Pro with advanced AI features, Tensor G4 chip, and incredible camera",
+    "category": "507f1f77bcf86cd799439011",
+    "imageCover": "google_pixel_9_pro.jpg",
+    "ratingsAverage": 4,
+    "ratingsQuantity": 6
+  }
+]
