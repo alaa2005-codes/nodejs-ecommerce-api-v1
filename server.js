@@ -42,9 +42,10 @@ app.use((req, res, next) => {
 //Global error handling middleware for express
 app.use(globalError);
         const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
           console.log(`App running on port ${PORT}`);
         });
+
 // Handle rejection outside express
 process.on('unhandledRejection',(err)=>{
 console.error(`UnhandledRejection Error: ${err}`);
