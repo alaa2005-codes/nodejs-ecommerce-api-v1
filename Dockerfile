@@ -13,6 +13,6 @@ EXPOSE 5000
 ENV PORT=5000
 ENV NODE_ENV=production
 
-ENV DB_URI="mongodb+srv://<db_username>:<db_password>@cluster0.zgjgvon.mongodb.net/?appName=Cluster0"
+ENV DB_URI="mongodb+srv://Alaa:Alaa123456@cluster0.zgjgvon.mongodb.net/udemy-ecommerce-db?retryWrites=true&w=majority"
 
 CMD ["node", "server.js"]
