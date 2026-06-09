@@ -13,6 +13,8 @@
   "type": "commonjs",
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "compression": "^1.8.1",
+    "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "express-async-handler": "^1.2.0",
@@ -24,6 +26,7 @@
     "nodemailer": "^8.0.2",
     "sharp": "^0.34.5",
     "slugify": "^1.6.6",
+    "stripe": "^22.2.0",
     "uuid": "^13.0.0"
   },
   "devDependencies": {

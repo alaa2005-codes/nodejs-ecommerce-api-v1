@@ -5,6 +5,8 @@ const path   = require('path');
 const express = require('express');//مكتبه تعملي Api
 const dotenv = require('dotenv');//تقرأ لي  الملفات من ال config.env
 const morgan = require('morgan');// تطبع كل طلب يدخل الى السرفر
+const cors = require('cors');
+const compression = require('compression')
 
 dotenv.config({ path: './config.env' });
 const ApiError     = require('./utils/apiError');
@@ -17,6 +19,11 @@ dbConnection();
 
 // express app
 const app = express();
+// Enable other domains to access your application 
+app.use(cors());
+app.options('/*splat', cors());
+// compress all responses
+app.use(compression());
 
 // Middlewares
 app.use(express.json());
