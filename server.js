@@ -14,6 +14,8 @@ const globalError = require('./middlewares/errorMiddleware');
 const dbConnection = require('./config/database');
 //Routes
 const mountRoutes = require('./routes');
+
+const { webhookCheckout } = require('./services/orderService');
 //connect with db
 dbConnection();
 
@@ -26,6 +28,7 @@ app.options('/*splat', cors());
 app.use(compression());
 
 // Middlewares
+app.post('/webhook-checkout', express.raw({ type: 'application/json' }), webhookCheckout);
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'upload')));
 
