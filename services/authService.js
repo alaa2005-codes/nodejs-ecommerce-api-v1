@@ -9,6 +9,8 @@ const sendEmail = require('../utils/sendEmail');
 
 const User = require('../models/userModel');
 const createToken =  require('../utils/createToken');
+const {sanitizeUser} =  require('../utils/sanitizeData');
+
 //@desc Signup
 //@route Get/api/v1/auth/signup
 //@access Public
@@ -24,7 +26,7 @@ exports.signup = asyncHandler(async(req,res,next)=>
     //2)Generate token
         const token = createToken(user._id);
 
-    res.status(201).json({data:user,token});
+    res.status(201).json({data:sanitizeUser(user),token});
 });
 //@desc  Login
 //@route Get/api/v1/auth/login
@@ -42,7 +44,7 @@ exports.login = asyncHandler(async(req,res,next)=>
         //3)Generate token
         const token = createToken(user._id);
         //4)Send Response to client side  
-        res.status(200).json({data:user,token});
+        res.status(200).json({data:sanitizeUser(user),token});
     });
 //@desc  make sure the user is logged in 
 exports.protect = asyncHandler(async(req,res,next)=>
