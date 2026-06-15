@@ -136,16 +136,19 @@ exports.checkoutSession = asyncHandler(async(req,res,next)=>
         //4) send session to response
         res.status(200).json({status:'success',session});
     })
-
 exports.webhookCheckout = asyncHandler(async (req, res, next) => {
-    const sig = req.headers['stripe-signature'];//التاكد من البيانات انها فعلا قادمة من الشركة 
+    const sig = req.headers['stripe-signature'];
+            //تخزن الرقم الذي اريد فحصه مع الرقم السري هذا الرقم يرسل كلما صار طلب 
     let event;
     try {
     event = stripe.webhooks.constructEvent(
         req.body,
         sig,
-        process.env.STRIPE_WEBHOOK_SECRET
+        process.env.STRIPE_WEBHOOK_SECRET//يجلب الرمز السري من ملف Dockerfile
     );
+
+
+    
     } catch (err) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
     }

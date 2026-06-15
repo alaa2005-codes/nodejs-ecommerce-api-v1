@@ -7,6 +7,8 @@ const dotenv = require('dotenv');//تقرأ لي  الملفات من ال confi
 const morgan = require('morgan');// تطبع كل طلب يدخل الى السرفر
 const cors = require('cors');
 const compression = require('compression')
+const rateLimit = require('express-rate-limit');//مكتبه تحدد عدد الطلبات الي تجي من نفس الاي بي
+const hpp = require('hpp');
 
 dotenv.config({ path: './config.env' });
 const ApiError     = require('./utils/apiError');
@@ -16,6 +18,7 @@ const dbConnection = require('./config/database');
 const mountRoutes = require('./routes');
 
 const { webhookCheckout } = require('./services/orderService');
+const { MAX } = require('uuid');
 //connect with db
 dbConnection();
 
@@ -29,13 +32,25 @@ app.use(compression());
 
 // Middlewares
 app.post('/webhook-checkout', express.raw({ type: 'application/json' }), webhookCheckout);
-app.use(express.json());
+app.use(express.json({limit: '20kb'}));
 app.use(express.static(path.join(__dirname,'upload')));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
   console.log(`mode: ${process.env.NODE_ENV}`);
 }
+// Limit each IP to 100 requests per `window` (here, per 15 minutes).
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	MAX: 100,
+  message: 'Too many accounts created from this IP, please try again after 15 minutes',
+})
+
+// Apply the rate limiting middleware to all requests.
+app.use('/api',limiter)
+
+//Middleware to protect against http parameter pollution attacks
+app.use(hpp());
 // Mount Routes
 mountRoutes(app);
 
