@@ -28,7 +28,7 @@ dbConnection();
 const app = express();
 // Enable other domains to access your application 
 app.use(cors());
-app.options('*', cors());
+app.options('/*path', cors());
 // compress all responses
 app.use(compression());
 
@@ -65,10 +65,11 @@ app.use((req, res, next) => {
 //Global error handling middleware for express
 app.use(globalError);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, () => {
-  console.log(`App running successfully on cloud port`);
+  console.log(`App running on port ${PORT}`);
 });
+
 
 // Handle rejection outside express
 process.on('unhandledRejection',(err)=>{
