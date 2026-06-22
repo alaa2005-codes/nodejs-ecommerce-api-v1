@@ -65,9 +65,9 @@ app.use((req, res, next) => {
 //Global error handling middleware for express
 app.use(globalError);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 const server = app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}`);
+  console.log(`App running successfully on cloud port`);
 });
 
 // Handle rejection outside express
