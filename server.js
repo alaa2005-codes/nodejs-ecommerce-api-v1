@@ -1,7 +1,6 @@
 //هو المسؤول عن تشغيل السيرفر وبوصل كل الملفات مع بعضها
 const path   = require('path');
 
-
 const express = require('express');//مكتبه تعملي Api
 const dotenv = require('dotenv');//تقرأ لي  الملفات من ال config.env
 const morgan = require('morgan');// تطبع كل طلب يدخل الى السرفر
@@ -65,10 +64,11 @@ app.use((req, res, next) => {
 });
 //Global error handling middleware for express
 app.use(globalError);
-        const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, '0.0.0.0', () => {
-          console.log(`App running on port ${PORT}`);
-        });
+
+const PORT = process.env.PORT || 5000;
+const server = app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}`);
+});
 
 // Handle rejection outside express
 process.on('unhandledRejection',(err)=>{
