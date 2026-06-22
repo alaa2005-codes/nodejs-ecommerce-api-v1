@@ -22,7 +22,6 @@ const fs = require('fs'); if (!fs.existsSync('./upload')) { fs.mkdirSync('./uplo
 const mountRoutes = require('./routes');
 
 const { webhookCheckout } = require('./services/orderService');
-const { MAX } = require('uuid');
 //connect with db
 dbConnection();
 
@@ -30,7 +29,7 @@ dbConnection();
 const app = express();
 // Enable other domains to access your application 
 app.use(cors());
-app.options('/*splat', cors());
+app.options('*', cors());
 // compress all responses
 app.use(compression());
 
@@ -49,7 +48,7 @@ app.use(xss());
 // Limit each IP to 100 requests per `window` (here, per 15 minutes).
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
-	MAX: 100,
+  max: 100,
   message: 'Too many accounts created from this IP, please try again after 15 minutes',
 })
 
