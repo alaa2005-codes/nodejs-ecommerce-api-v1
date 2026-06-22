@@ -16,6 +16,8 @@ dotenv.config({ path: './config.env' });
 const ApiError     = require('./utils/apiError');
 const globalError = require('./middlewares/errorMiddleware');
 const dbConnection = require('./config/database');
+const fs = require('fs'); if (!fs.existsSync('./upload')) { fs.mkdirSync('./upload'); }
+
 //Routes
 const mountRoutes = require('./routes');
 
