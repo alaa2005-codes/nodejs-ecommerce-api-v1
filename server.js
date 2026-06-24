@@ -42,8 +42,8 @@ if (process.env.NODE_ENV === 'development') {
   console.log(`mode: ${process.env.NODE_ENV}`);
 }
 //To apply data Sanitization 
-app.use(mongoSanitize());
-app.use(xss());
+//app.use(mongoSanitize());
+//app.use(xss());
 // Limit each IP to 100 requests per `window` (here, per 15 minutes).
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
