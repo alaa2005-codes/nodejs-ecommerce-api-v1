@@ -1,9 +1,7 @@
-exports.sanitizeUser = function (user) 
-{
-    return 
-    {
+exports.sanitizeUser = function (user) {
+    return {
         _id: user._id,
-        name = user.name,
-        email = user.email
+        name: user.name,
+        email: user.email
     };
 };
