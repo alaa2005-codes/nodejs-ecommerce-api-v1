@@ -26,6 +26,8 @@ dbConnection();
 
 // express app
 const app = express();
+app.set('trust proxy', 1);
+
 // Enable other domains to access your application 
 app.use(cors({ origin: "*" }));
 
