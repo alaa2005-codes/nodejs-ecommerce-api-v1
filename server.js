@@ -27,7 +27,7 @@ dbConnection();
 // express app
 const app = express();
 // Enable other domains to access your application 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
 // compress all responses
 app.use(compression());
